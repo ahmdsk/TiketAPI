@@ -4,7 +4,11 @@ import {
   column,
   beforeSave,
   BaseModel,
+  hasMany,
+  HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
+import Ticket from './Ticket'
+import Event from './Event'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -27,6 +31,12 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @hasMany(() => Ticket)
+  public tickets: HasMany<typeof Ticket>
+
+  @hasMany(() => Event)
+  public events: HasMany<typeof Event>
 
   @beforeSave()
   public static async hashPassword (user: User) {
