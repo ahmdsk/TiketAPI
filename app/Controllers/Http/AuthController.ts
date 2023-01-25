@@ -18,16 +18,23 @@ export default class AuthController {
         const name      = request.input('name')
         const user      = new User()
 
-        user.email = email
-        user.password = password
-        user.name = name
-
-        await user.save()
-
-        const token = await auth.use('api').login(user, {
-            expiresIn: '10 days'
-        })
-
-        return token.toJSON()
+        if(email != undefined && password != undefined && name != undefined) {
+            user.email = email
+            user.password = password
+            user.name = name
+    
+            await user.save()
+    
+            const token = await auth.use('api').login(user, {
+                expiresIn: '10 days'
+            })
+    
+            return token.toJSON()
+        } else {
+            return {
+                status: false,
+                message: 'Register invalid'
+            }
+        }
     }
 }
