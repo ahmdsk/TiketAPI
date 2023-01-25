@@ -9,7 +9,7 @@ export default class Events extends BaseSchema {
       table.string('title')
       table.text('description').nullable()
       table.dateTime('date')
-      table.double('tickets_price')
+      table.double('ticket_price')
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
       
       table.timestamp('created_at', { useTz: true }).notNullable()
