@@ -8,7 +8,6 @@ export default class Tickets extends BaseSchema {
       table.increments('id').primary()
       table.string('code')
       table.double('amount')
-
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.integer('event_id').unsigned().references('id').inTable('events').onDelete('CASCADE')
       table.boolean('is_used').defaultTo(false)
