@@ -33,7 +33,7 @@ export default class AuthController {
         } else {
             return {
                 status: false,
-                message: 'Register invalid'
+                message: 'Register invalid!'
             }
         }
     }
