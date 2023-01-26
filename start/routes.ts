@@ -33,8 +33,12 @@ Route.group(() => {
     Route.post('login', 'AuthController.login')
   }).prefix('auth')
 
-  Route.resource('events', 'EventsController').apiOnly()
-  Route.get('users/:id/events', 'EventsController.userevents')
-  Route.post('events/buy/:id', 'EventsController.buy')
-  Route.post('events/join/:id', 'EventsController.join')
+  Route.group(() => {
+    Route.resource('events', 'EventsController').apiOnly()
+    Route.resource('tickets', 'TicketsController').apiOnly()
+  
+    Route.get('users/:id/events', 'EventsController.userevents')
+    Route.post('events/buy/:id', 'EventsController.buy')
+    Route.post('events/join/:id', 'EventsController.join')
+  }).middleware('auth:api')
 }).prefix('api/v1')
