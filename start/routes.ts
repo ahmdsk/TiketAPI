@@ -31,5 +31,10 @@ Route.group(() => {
   Route.group(() => {
     Route.post('register', 'AuthController.register')
     Route.post('login', 'AuthController.login')
-  })
-})
+  }).prefix('auth')
+
+  Route.resource('events', 'EventsController').apiOnly()
+  Route.get('users/:id/events', 'EventsController.userevents')
+  Route.post('events/buy/:id', 'EventsController.buy')
+  Route.post('events/join/:id', 'EventsController.join')
+}).prefix('api/v1')
