@@ -14,7 +14,7 @@ export default class Ticket extends BaseModel {
   public amount: number
 
   @column()
-  public id_used: boolean
+  public is_used: boolean
 
   @column()
   public userId: number
