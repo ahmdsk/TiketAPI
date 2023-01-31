@@ -9,6 +9,13 @@ export default class AuthController {
             expiresIn: '10 days'
         })
 
+        const token1 = token.toJSON().token
+        const user = await User.query().where('email', email).first()
+
+        return {
+            user,
+            token: token1
+        }
         return token.toJSON()
     }
 
